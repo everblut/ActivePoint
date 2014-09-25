@@ -1,0 +1,59 @@
+<%= form_for @exercise, :html => { :class => "form-horizontal exercise" } do |f| %>
+
+    <% if @exercise.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @exercise.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <div id="ex-form">
+  <div class="control-group">
+    <%= f.label :file, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :file, :class => 'form-control' %>
+    </div>
+    <%= error_span(@exercise[:file]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@exercise[:name]) %>
+  </div>
+  <!-- Combos -->
+  <div class="control-group">
+    <%= f.label "Maestro", :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "exercise[teacher_id]", teachers_combo(@teachers) %>
+    </div>
+  </div>
+   <div class="control-group">
+    <%= f.label "Curso", :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "exercise[course_id]", courses_combo(@courses) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Tarea", :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "exercise[homework_id]", homeworks_combo(@homeworks) %>
+    </div>
+    <%= error_span(@exercise[:homework_id]) %>
+  </div>
+  <!-- end combos -->
+</div>
+
+  <%= f.submit "Subir", :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            exercises_path, :class => 'btn btn-default' %>
+
+<% end %>

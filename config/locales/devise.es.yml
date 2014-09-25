@@ -1,5 +1,8 @@
 es:
   devise:
+    admin_user:
+      one: Administrador
+      other: Admins
     confirmations:
       confirmed: "Tu cuenta ya ha sido confirmada."
       confirmed_and_signed_in: "Tu cuenta ya ha sido confirmada. Has sido identificado."

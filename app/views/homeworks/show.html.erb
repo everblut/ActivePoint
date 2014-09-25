@@ -1,0 +1,23 @@
+<%- model_class = Homework -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @homework.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
+  <dd><%= link_to @homework.course.name, course_path( @homework.course_id) %></dd>
+</dl>
+<h4>Tareas entregadas</h4>
+<% @homework.exercises.each do |exercise| %>
+	<dl class="dl-horizontal">
+  		<dt><strong> Matricula :</strong></dt>
+  		<dd><%= exercise.name %></dd>
+	</dl>
+<% end %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              homeworks_path, :class => 'btn btn-default'  %>
+<%= link_to 'Enviar ejercicio',
+            new_exercise_path,
+            :class => 'btn btn-success' %>

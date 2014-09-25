@@ -1,5 +1,6 @@
 es:
   active_admin:
+
     dashboard: Inicio
     dashboard_welcome:
       welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
@@ -256,6 +257,9 @@ es:
       create: Crear %{model}
       submit: Guardar %{model}
       update: Actualizar %{model}
+    links:
+      cancel: Cancelar
+      back: Regresar
   number:
     currency:
       format:
@@ -316,3 +320,37 @@ es:
       long: ! '%A, %d de %B de %Y a las %I:%M %p'
       short: ! '%d de %b a las %H:%M hrs'
     pm: pm
+  activerecord:
+    models:
+      exercise:
+        one: Ejercicio
+        other: Ejercicios
+      admin_user:
+        one: Admin
+        other: Admins
+      homework:
+        one: Tarea
+        other: Tareas
+      teacher: 
+        one: Maestro
+        other: Maestros
+      course:
+        one: Curso
+        other: Cursos
+    attributes:
+      exercise:
+        name: Nombre
+        file: Archivo
+        homework_id: Tarea
+      admin_user:
+        email: Correo
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+      homework:
+        name: Nombre
+        course_id: Curso
+      course:
+        name: Nombre
+        teacher_id: Maestro
+      teacher:
+        name: Nombre

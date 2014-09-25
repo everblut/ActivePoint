@@ -1,0 +1,20 @@
+<%- model_class = Course -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:teacher_id) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, course_path(course) %></td>
+        <td><%= link_to course.teacher.name, teacher_path(course.teacher.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

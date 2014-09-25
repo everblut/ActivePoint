@@ -1,0 +1,19 @@
+<%- model_class = Teacher -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @teacher.name %></dd>
+</dl>
+<hr/>
+<h4>Cursos</h4>
+<% @teacher.courses.each do |course| %>
+	<dl class="dl-horizontal">
+  		<dt><strong><%= Course.human_attribute_name(:name) %>:</strong></dt>
+  		<dd><%= link_to course.name, course_path(course.id) %></dd>
+	</dl>
+<% end %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              teachers_path, :class => 'btn btn-default'  %>

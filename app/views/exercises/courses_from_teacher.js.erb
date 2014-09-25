@@ -1,0 +1,11 @@
+<% if @courses.any? %>
+	$('#exercise_course_id').html("<%= escape_javascript( select_tag 'exercise[course_id]', courses_combo(@courses) ) %>");
+<% else %>
+	$('#exercise_course_id').html("");
+<% end %>
+
+<% if @homeworks.any? %>
+	$('#exercise_homework_id').html("<%= escape_javascript( select_tag 'exercise[homework_id]', homeworks_combo(@homeworks) ) %>");
+<% else %>
+	$('#exercise_homework_id').html("");
+<% end %>

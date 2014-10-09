@@ -5,8 +5,12 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
-
- input#exercise_file{
- 	width: 75%;
- }
- div#ex-form{ padding-bottom: 5%; }
+  input#exercise_name,
+  input#exercise_password,
+  input#exercise_file
+   {
+  	width: 100%;
+  }
+  button.btn-all{
+  	width: 100%;
+  }

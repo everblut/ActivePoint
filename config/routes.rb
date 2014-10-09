@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'courses#index'
+  root 'exercises#new'
   resources :exercises, only: [:new,:create]
   resources :teachers, only: [:index, :show]
   resources :courses, only: [:index, :show]

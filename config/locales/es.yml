@@ -251,9 +251,16 @@ es:
         one: ! '%{model} no pudo guardarse debido a 1 error'
         other: ! '%{model} no pudo guardarse debido a %{count} errores'
   helpers:
+    submit:
+      create: Crear 
+      submit: Guardar 
+      update: Actualizar 
+      exercise:
+        create: Crear %{model}
+        submit: Guardar %{model}
+        update: Actualizar %{model}
     select:
       prompt: Por favor selecciona
-    submit:
       create: Crear %{model}
       submit: Guardar %{model}
       update: Actualizar %{model}

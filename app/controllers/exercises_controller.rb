@@ -12,13 +12,18 @@ class ExercisesController < ApplicationController
 	 if @exercise.search_access(params[:exercise][:password])
 	   	if @exercise.save
    		  flash[:success] = "Se ha guardado el archivo."
+   		  flash[:error] = nil
       	  redirect_to root_path
       	else
+      		flash.now[:error] = "Revisa los datos que estas ingresando."
+      		@teachers = Teacher.all
+			@courses = @teachers.first.courses
+			@homeworks = @courses.first.homeworks
       		@exercise = Exercise.new
      		render 'new'
      	end
      else
-      	flash[:error] = "El SIASE no responde a esta matricula/password"
+      	flash.now[:error] = "El SIASE no responde a esta matricula/password"
       	@exercise = Exercise.new
       	@teachers = Teacher.all
 		@courses = @teachers.first.courses

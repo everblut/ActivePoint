@@ -15,52 +15,57 @@
     </div>
   <% end %>
   <div id="ex-form">
-  <div class="control-group">
-    <%= f.label :file, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.file_field :file, :class => 'form-control' %>
+  <div class="form-group">
+    <label class="control-label" for="exercise_file">Archivo <i class="icon icon-material-cloud-upload"></i></label>
+   <!-- <div class="form-control-wrapper">
+      <%= f.file_field :file, :class => 'form-control-wrapper fileinput'%>
+    </div>-->
+    <div class="form-control-wrapper fileinput">
+      <input id="exercise_file" type="text" readonly="" class="form-control empty">
+      <%= f.file_field :file, :class => 'form-control-wrapper fileinput'%>
+      <div class="floating-label">Browse...</div>
+      <span class="material-input"></span>
     </div>
-    <%= error_span(@exercise[:file]) %>
-  </div>
-  <div class="control-group">
+  </div> 
+
+    
+
+  <div class="form-group">
     <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
+    <div class="form-control-wrapper">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
-    <%= error_span(@exercise[:name]) %>
   </div>
-  <div class="control-group">
+  <div class="form-group">
     <%= f.label "Contraseña", :class => 'control-label' %>
-    <div class="controls">
+    <div class="form-control-wrapper">
       <%= password_field_tag 'exercise[password]',nil,  :class => 'form-control' %>
     </div>
-    <%= error_span(@exercise[:name]) %>
   </div>
   <!-- Combos -->
-  <div class="control-group">
+  <div class="form-group">
     <%= f.label "Maestro", :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "exercise[teacher_id]", teachers_combo(@teachers) %>
+    <div class="form-control-wrapper">
+      <%= select_tag "exercise[teacher_id]", teachers_combo(@teachers), class: "form-control" %>
     </div>
   </div>
-   <div class="control-group">
+   <div class="form-group">
     <%= f.label "Curso", :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "exercise[course_id]", courses_combo(@courses) %>
+    <div class="form-control-wrapper">
+      <%= select_tag "exercise[course_id]", courses_combo(@courses),class: "form-control" %>
     </div>
   </div>
-  <div class="control-group">
+  <div class="form-group">
     <%= f.label "Tarea", :class => 'control-label' %>
-    <div class="controls">
-      <%= select_tag "exercise[homework_id]", homeworks_combo(@homeworks) %>
+    <div class="form-control-wrapper">
+      <%= select_tag "exercise[homework_id]", homeworks_combo(@homeworks),class: "form-control" %>
     </div>
-    <%= error_span(@exercise[:homework_id]) %>
   </div>
   <!-- end combos -->
 </div>
-
-  <%= f.submit "Subir", :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            exercises_path, :class => 'btn btn-default' %>
-
+<div class="form-group">
+  <div class="col-lg-12">
+  <%= f.button :submit , :class => 'btn btn-primary btn-all' %>
+</div>
+</div>
 <% end %>

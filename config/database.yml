@@ -10,4 +10,4 @@ development:
   database: activepoint_development
   pool: 5
   username: activepoint
-  password: activepoint
+  password: active

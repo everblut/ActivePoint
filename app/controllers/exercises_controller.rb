@@ -5,16 +5,28 @@ class ExercisesController < ApplicationController
 		@courses = @teachers.first.courses
 		@homeworks = @courses.first.homeworks
 	end
+
 	def create
+	 Exercise.do_search(exercise_params) 
 	 @exercise = Exercise.new(exercise_params)
-   	 if @exercise.save
-   	  flash[:success] = "Se ha guardado el archivo."
-      redirect_to root_path
+	 if @exercise.search_access(params[:exercise][:password])
+	   	if @exercise.save
+   		  flash[:success] = "Se ha guardado el archivo."
+      	  redirect_to root_path
+      	else
+      		@exercise = Exercise.new
+     		render 'new'
+     	end
      else
-      @exercise = Exercise.new
-      render 'new'
+      	flash[:error] = "El SIASE no responde a esta matricula/password"
+      	@exercise = Exercise.new
+      	@teachers = Teacher.all
+		@courses = @teachers.first.courses
+		@homeworks = @courses.first.homeworks
+      	render 'new'
      end
 	end
+
 	def index
 	end
 	def edit

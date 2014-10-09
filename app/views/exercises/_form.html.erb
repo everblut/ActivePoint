@@ -29,6 +29,13 @@
     </div>
     <%= error_span(@exercise[:name]) %>
   </div>
+  <div class="control-group">
+    <%= f.label "Contraseña", :class => 'control-label' %>
+    <div class="controls">
+      <%= password_field_tag 'exercise[password]',nil,  :class => 'form-control' %>
+    </div>
+    <%= error_span(@exercise[:name]) %>
+  </div>
   <!-- Combos -->
   <div class="control-group">
     <%= f.label "Maestro", :class => 'control-label' %>

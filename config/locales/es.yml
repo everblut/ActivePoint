@@ -339,7 +339,7 @@ es:
         other: Cursos
     attributes:
       exercise:
-        name: Nombre
+        name: Matricula
         file: Archivo
         homework_id: Tarea
       admin_user:

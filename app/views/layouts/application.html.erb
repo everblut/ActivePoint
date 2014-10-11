@@ -18,7 +18,7 @@
 
   </head>
   <body>
-
+<!--
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -26,10 +26,31 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<%= root_path %>">Exercise uploader</a>
+        <a class="navbar-brand" href="<%= root_path %>">Active Point</a>
       </div>
     </div>
+-->
+<div class="bs-component">
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand withripple" href="<%= root_path %>">Active Point<div class="ripple-wrapper"></div></a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+              <a href="mailto:everblut@gmail.com" class="withripple" >Contacto<div class="ripple-wrapper"></div>
+              </a>
 
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
     <div class="container">
       <div class="row well">
         <div class="col-lg-offset-3 col-lg-6">

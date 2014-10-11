@@ -11,6 +11,13 @@
    {
   	width: 100%;
   }
-  button.btn-all{
+  button.btn-all.btn-primary{
   	width: 100%;
+    background-color: #215b33;
+  }
+  div.navbar{
+    background-color: #215b33;
+  }
+  .page-header {
+    text-align: center;
   }

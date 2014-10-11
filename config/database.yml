@@ -11,3 +11,10 @@ development:
   pool: 5
   username: activepoint
   password: active
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: activepoint_development
+  pool: 5
+  username: activepoint
+  password: active

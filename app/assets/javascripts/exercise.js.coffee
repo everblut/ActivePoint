@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-	$("#exercise_teacher_id").change ->
+    $("#exercise_teacher_id").change ->
   		isd = $("#exercise_teacher_id option:selected").val()
   		url = "/fetch_courses/"+isd
   		$.ajax url: url
@@ -11,7 +11,6 @@ ready = ->
   		isd = $("#exercise_course_id option:selected").val()
   		url = "/fetch_homeworks/"+isd
   		$.ajax url: url
-
 
 
 $(document).ready(ready)

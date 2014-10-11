@@ -1,15 +1,15 @@
 module ExerciseHelper
 
 	def teachers_combo teachers
-		return nil if teachers.nil?
-		options_for_select(teachers.each.map { |t| [t.name,t.id] })
+		return teachers.nil? ? nil : create_combo(teachers) 
 	end
 	def courses_combo courses
-		return nil if courses.nil?
-		options_for_select(courses.each.map{|c| [c.name,c.id]})
+		return courses.nil? ? nil : create_combo(courses)
 	end
 	def homeworks_combo homeworks
-		return nil if homeworks.nil?
-		options_for_select(homeworks.each.map{|h| [h.name,h.id]})
+		return homeworks.nil? ? nil : create_combo(homeworks)
+	end
+	def create_combo items
+		options_for_select(items.each.map{|i| [i.name,i.id]})
 	end
 end

@@ -1,9 +1,6 @@
 class ExercisesController < ApplicationController
 	def new
-		@exercise = Exercise.new
-		@teachers = Teacher.all
-		@courses = @teachers.first.courses
-		@homeworks = @courses.first.homeworks
+		set_combos
 	end
 
 	def create
@@ -16,19 +13,11 @@ class ExercisesController < ApplicationController
       	  redirect_to root_path
       	else
       		flash.now[:error] = "Revisa los datos que estas ingresando."
-      		@teachers = Teacher.all
-			@courses = @teachers.first.courses
-			@homeworks = @courses.first.homeworks
-      		@exercise = Exercise.new
-     		render 'new'
+      		set_combos
      	end
      else
       	flash.now[:error] = "El SIASE no responde a esta matricula/password"
-      	@exercise = Exercise.new
-      	@teachers = Teacher.all
-		@courses = @teachers.first.courses
-		@homeworks = @courses.first.homeworks
-      	render 'new'
+      	set_combos
      end
 	end
 
@@ -46,10 +35,10 @@ class ExercisesController < ApplicationController
 		end
 	end
 	def courses_from_teacher
-		@courses = Course.where(teacher_id: params[:teacher_id])
+		@courses = Course.active_with_teacher(params[:teacher_id])
 		if @courses.any?
 			if @courses.first.homeworks.any?
-				@homeworks = @courses.first.homeworks
+				@homeworks = @courses.first.homeworks.active
 			else
 				@homeworks = []
 			end
@@ -61,7 +50,7 @@ class ExercisesController < ApplicationController
 		end
 	end
 	def homeworks_from_course
-		@homeworks = Homework.where(course_id: params[:course_id])
+		@homeworks = Homework.active_with_course(params[:course_id])
 		respond_to do |f|  
 			f.js
 		end
@@ -71,4 +60,11 @@ class ExercisesController < ApplicationController
  	 def exercise_params
   	  params.require(:exercise).permit(:homework_id,:name,:file,:matricula,:id)
  	 end
+ 	 def set_combos
+		@teachers = Teacher.all
+		@courses = @teachers.first.courses.active
+		@homeworks = @courses.first.homeworks.active
+		@exercise = Exercise.new
+		render 'new'
+	end
 end

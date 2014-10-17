@@ -16,6 +16,12 @@ ActiveAdmin.register Exercise do
     column "tarea" do |c|
       link_to c.homework.name, admin_homework_path(c.homework.id)
     end
+    column "curso" do |c|
+      link_to c.homework.course.name, admin_course_path(c.homework.course.id)
+    end
+    column "maestro" do |c|
+      link_to c.homework.course.teacher.name, admin_teacher_path(c.homework.course.teacher.id)
+    end
     actions
   end
 

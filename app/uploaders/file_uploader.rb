@@ -36,7 +36,10 @@ class FileUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
   # end
-
+  def rename!(new_name)
+    new_path = File.join(File.dirname(file.file), new_name)
+    file.move_to(new_path)
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_white_list

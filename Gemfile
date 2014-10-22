@@ -43,3 +43,7 @@ gem 'active_skin'
 gem 'devise'
 gem 'carrierwave', '~> 0.4-stable'
 gem "twitter-bootstrap-rails"
+gem "thinreports"
+gem "winnow"
+gem "consistent_hash"
+gem "unicode"

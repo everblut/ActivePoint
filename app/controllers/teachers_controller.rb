@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
 	def index
 		@teachers = Teacher.all
+		Service.schedule
 	end
 	def show
 		@teacher = Teacher.find(params[:id])

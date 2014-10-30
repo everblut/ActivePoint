@@ -26,6 +26,7 @@ gem 'nokogiri'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 gem 'bootstrap-material-design'
+gem 'active_model_serializers'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,3 +48,5 @@ gem "thinreports"
 gem "winnow"
 gem "consistent_hash"
 gem "unicode"
+gem "sidekiq"
+gem "twitter"

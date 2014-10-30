@@ -1,4 +1,4 @@
-load 'Winnower.rb'
+load 'lib/tasks/Winnower.rb'
 require 'thinreports'
 
 namespace :evaluator do

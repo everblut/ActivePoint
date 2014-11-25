@@ -1,11 +1,14 @@
-== README
+== ActivePoint
 
-Especificaciones: 
+
+Especificaciones:
 
 * Version de ruby: 2.1.2
 
-* Dependencias del sistema : postgresql
+* Version de rails: 4.1.0
 
-* Configuracion : config/initializers/carrierwave.rb ( directorio de archivos )
+* Dependencias del sistema : postgresql, gnuplot
 
-* No contiene seeds.
+* Configuración : config/initializers/carrierwave.rb ( directorio de archivos )
+
+* Necesita thinreports para la creación de los mismos.

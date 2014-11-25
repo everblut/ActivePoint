@@ -3,7 +3,7 @@ require 'consistent_hash'
 require 'unicode'
 
 class Winnower
-	attr_reader :averages,:files
+	attr_reader :averages,:files,:filenames
 	def initialize(guarantee,noise,path)
 	    @guarantee = guarantee || 15
 	    @noise = noise || 9
@@ -20,14 +20,14 @@ class Winnower
 		match_key = "#{keys[0]}-#{keys[1]}"
 
 	    @matches[match_key] = Winnow::Matcher.find_matches(@fingerprints[keys[0]],
-	    												   @fingerprints[keys[1]])	
+	    												   @fingerprints[keys[1]])
 	end
 	def calculate_fingerprints
 		@files.each do |key,file|
 			@fingerprints[key] = @fingerprinter.fingerprints(file, source: key)
 		end
 	end
-	def take_files 
+	def take_files
 		@filenames.each do |filename|
 			file = File.open(filename,'r')
 			matricula = File.basename(filename,'.*')
@@ -57,7 +57,7 @@ class Winnower
 									match.matches_from_b.first,
 									15)
 			list << [context_a, context_b]
-	    end	
+	    end
 	    return list
 	end
 	def context_for(file,match,size)
@@ -68,7 +68,7 @@ class Winnower
 	def get_dirs
 		@filenames = Dir.glob("#{@path}/*/*")
 	end
-	def execute 
+	def execute
 		get_dirs
 		take_files
 		calculate_fingerprints

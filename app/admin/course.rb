@@ -4,7 +4,7 @@ ActiveAdmin.register Course do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-   permit_params :name, :teacher_id, :status
+   permit_params :name, :teacher_id, :status, :need_report
   #
   # or
   #
@@ -15,7 +15,9 @@ ActiveAdmin.register Course do
     column "maestro" do |c|
       link_to c.teacher.name, admin_teacher_path(c.teacher.id)
     end
+    column :status
+    column :need_report
     actions
   end
-
+  
 end

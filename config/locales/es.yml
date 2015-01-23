@@ -252,9 +252,9 @@ es:
         other: ! '%{model} no pudo guardarse debido a %{count} errores'
   helpers:
     submit:
-      create: Crear 
-      submit: Guardar 
-      update: Actualizar 
+      create: Crear
+      submit: Guardar
+      update: Actualizar
       exercise:
         create: Crear %{model}
         submit: Guardar %{model}
@@ -338,12 +338,15 @@ es:
       homework:
         one: Tarea
         other: Tareas
-      teacher: 
+      teacher:
         one: Maestro
         other: Maestros
       course:
         one: Curso
         other: Cursos
+      report:
+        one: Reporte
+        other: Reportes
     attributes:
       exercise:
         name: Matricula
@@ -361,3 +364,7 @@ es:
         teacher_id: Maestro
       teacher:
         name: Nombre
+      report:
+        name: Nombre
+        end_date: Fecha de cierre
+        course: curso

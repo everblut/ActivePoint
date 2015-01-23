@@ -3,7 +3,7 @@ ActiveAdmin.register Homework do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :course_id, :name, :status, :need_report
+  permit_params :course_id, :name, :status, :need_report, :end_date
   #
   # or
   #
@@ -17,6 +17,7 @@ ActiveAdmin.register Homework do
     column "maestro" do |m|
       link_to m.course.teacher.name, admin_teacher_path(m.course.teacher.id)
     end
+    column :end_date
     column :status
     column :need_report
     actions

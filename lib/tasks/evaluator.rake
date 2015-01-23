@@ -11,6 +11,36 @@ namespace :evaluator do
   	end
   end
 
+  desc "Crea un reporte tipo kardex por grupo"
+  task :create_kardex => :environment do
+    Course.needing_report.each do |course|
+      hw_count = course.homeworks.count
+      puts "Cantidad de tareas: #{hw_count}"
+      kardex = {}
+      hws = homeworks_per course
+      hws.each do |h|
+        h[1].each { |m| kardex[m[0]] = inc_counter(kardex,m[0]) }
+      end
+      folder =  Rails.root.join("public")
+      r_name = "/uploads/#{course.teacher.id}/#{course.id}/kardex.pdf"
+      report_name =  "#{folder}#{r_name}"
+      puts "creando reporte... #{report_name}"
+      create_kardex(kardex,course.name,report_name,hw_count)
+    end
+  end
+  def homeworks_per course
+    hws = {}
+    course.homeworks.each { |hw| hws[hw.name] = exercise_per(hw) }
+    return hws
+  end
+  def exercise_per homework
+    counts = {}
+    homework.exercises.each { |ex| counts[ex.name] = inc_counter(counts,ex.name) }
+    return counts
+  end
+  def inc_counter counts, name
+    counts[name].nil? ? 1 : counts[name] + 1
+  end
   def perform_winnower(homework_id)
   	homework = Homework.find(homework_id)
   	course = homework.course
@@ -128,6 +158,28 @@ namespace :evaluator do
     end
   	report.generate(filename: info[:report_name])
     %x{rm '#{heatmap}'}
+  end
+  def create_kardex(kardex,nom_mate,report_name,hw_total)
+    layout = Rails.root.join("lib","assets")
+    report = ThinReports::Report.new layout: "#{layout}/kardex.tlf"
+    report.events.on :page_create do |e|
+      e.page.item(:pnum).value(e.page.no)
+    end
+    report.events.on :generate do |e|
+      e.pages.each do |page|
+        page.item(:ptotal).value("/ #{e.report.page_count}")
+      end
+    end
+    report.start_new_page do |page|
+      page.item(:nom_mate).value(nom_mate)
+      kardex.each do |student|
+        page.list.add_row do |row|
+          row.item(:mat).value("#{student[0]}")
+          row.item(:percent).value("#{student[1]} de #{hw_total}")
+        end
+      end
+    end
+    report.generate(filename: report_name)
   end
 
 end

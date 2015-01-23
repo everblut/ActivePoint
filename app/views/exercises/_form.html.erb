@@ -17,15 +17,15 @@
   <div id="ex-form">
   <div class="form-group">
     <label class="control-label" for="exercise_file">Archivo <i class="icon icon-material-cloud-upload"></i></label>
-    <div class="form-control-wrapper fileinput" data-toggle="tooltip" data-placement="left" title="Solo archivos .c">
+    <div class="form-control-wrapper fileinput" data-toggle="tooltip" data-placement="left" title="Solo archivos .c, .cs">
       <input id="exercise_file" type="text" readonly="" class="form-control empty">
       <%= f.file_field :file, :class => 'form-control-wrapper fileinput'%>
       <div class="floating-label">Browse...</div>
       <span class="material-input"></span>
     </div>
-  </div> 
+  </div>
 
-    
+
 
   <div class="form-group">
     <%= f.label :name, :class => 'control-label' %>

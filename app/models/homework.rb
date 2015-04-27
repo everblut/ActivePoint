@@ -6,7 +6,7 @@ class Homework < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :course_id, presence: true
-
+	validates :end_date, :presence => true
 	before_update :check_date
 
 	scope :active, -> { where status: 'true' }

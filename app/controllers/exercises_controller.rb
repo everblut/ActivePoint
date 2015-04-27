@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
 	end
 
 	def create
-	 Exercise.do_search(exercise_params) 
+	 Exercise.do_search(exercise_params)
 	 @exercise = Exercise.new(exercise_params)
 	 if @exercise.search_access(params[:exercise][:password])
 	   	if @exercise.save
@@ -51,7 +51,7 @@ class ExercisesController < ApplicationController
 	end
 	def homeworks_from_course
 		@homeworks = Homework.active_with_course(params[:course_id])
-		respond_to do |f|  
+		respond_to do |f|
 			f.js
 		end
 	end

@@ -1,6 +1,5 @@
 es:
   active_admin:
-
     dashboard: Inicio
     dashboard_welcome:
       welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
@@ -359,6 +358,9 @@ es:
       homework:
         name: Nombre
         course_id: Curso
+        need_report: Necesita reporte
+        end_date: Fecha de cierre
+        status: activa
       course:
         name: Nombre
         teacher_id: Maestro

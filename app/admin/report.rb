@@ -1,10 +1,7 @@
 ActiveAdmin.register Report do
 
- menu priority: 2, label: "report"
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-   permit_params :homework_id,:name
+ menu priority: 2
+ permit_params :homework_id,:name
   #
   # or
   #
@@ -28,12 +25,12 @@ ActiveAdmin.register Report do
   end
 
 
-    show :title => :short_name do 
+    show :title => :short_name do
       attributes_table do
         row :short_name
         row :homework_id do |c|
          link_to c.homework.name, admin_homework_path(c.homework.id)
-        end 
+        end
         row :created_at
         row :updated_at
       end

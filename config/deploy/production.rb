@@ -7,7 +7,7 @@ server '191.238.164.179', port: 22, roles: %w{app}
 
 set :user, "rubix"
 set :ssh_options, {
-    user: fetch(:user)
+    user: fetch(:user),
     keys: %w(~/.ssh/id_rsa.pub),
     forward_agent: true
   }

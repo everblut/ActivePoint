@@ -13,8 +13,11 @@ ready = ->
     isd = $("#exercise_course_id option:selected").val()
     url = "/fetch_homeworks/"+isd
     $.ajax url: url
-  	
 
+  $("#exercise_file").change ->
+    console.log "hcinga asu "+this.value.replace(/^.*\\/, "")
+    $(".float-inp").text(this.value.replace(/^.*\\/, ""))
+    return
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

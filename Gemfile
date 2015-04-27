@@ -43,6 +43,7 @@ group :development do
 end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem "font-awesome-rails"
 gem 'active_skin'
 gem 'devise'
 gem 'carrierwave', '~> 0.4-stable'

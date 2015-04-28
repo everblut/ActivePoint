@@ -22,9 +22,10 @@ ready = ->
     else
       $("#modalwarning").hide()
       $(".btnsubmit").show()
-    $(".modal").modal "toggle" 
+    $(".modal").modal "toggle"
 
   $(".btnsubmit").click ->
+    $(".btnsubmit").attr("disabled",true)
     $("form[id=new_exercise]").submit()
 
 

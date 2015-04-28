@@ -15,4 +15,5 @@
 //= require bootstrap-material-design
 //= require twitter/bootstrap
 //= require turbolinks
+//= require is_loading
 //= require_tree .

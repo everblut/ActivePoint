@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server '191.238.164.179', port: 22, roles: %w{app}
+server 'rubixtest.cloudapp.net', port: 22, roles: %w{app}
 
 set :user, "rubix"
 set :ssh_options, {

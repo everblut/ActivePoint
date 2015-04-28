@@ -39,16 +39,74 @@ set :puma_init_active_record, true  # Change to true if using ActiveRecord
 set :puma_threads, [1,4]
 set :puma_workers, 1
 
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+end
+
 namespace :deploy do
 
-  task :precompile do
-     on roles(:app) do
-       within release_path do
-         with rails_env: fetch(:stage) do
-           execute :rake, "assets:precompile"
-         end
-       end
-     end
-   end
+  desc 'Initial Deploy'
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+      invoke 'deploy'
+    end
+  end
 
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:restart'
+    end
+  end
+  desc "linked dirs"
+  task :linked_dirs do
+      on release_roles :all do
+        execute :mkdir, '-p', linked_dir_parents(release_path)
+        fetch(:linked_dirss).each do |dir|
+          target = release_path.join(dir)
+          source = shared_path.join(dir)
+          unless test "[ -L #{target} ]"
+            execute :rm, '-rf', target
+          end
+            execute :ln, '-s', source, target
+          end
+        end
+    end
+  desc 'link file application'
+  task :linked_files do
+      on release_roles :all do
+        execute :mkdir, '-p', linked_file_dirs(release_path)
+        fetch(:linked_filess).each do |file|
+          target = release_path.join(file)
+          source = shared_path.join(file)
+          unless test "[ -L #{target} ]"
+            execute :rm, '-rf', target
+          end
+          execute :ln, '-s', source, target
+        end
+      end
+  end
+  task :precompile do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:stage) do
+          execute :rake, "assets:precompile"
+        end
+      end
+    end
+  end
+
+  after  :finishing,    :precompile
+  after  :finishing,    "deploy:migrate"
+  after  :finishing,    :cleanup
+  after  :finishing,    :restart
 end
